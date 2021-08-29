@@ -1,26 +1,26 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'circles_builder.dart';
+import 'circles_background.dart';
 
 enum GradientColor {
-  Red,
-  Blue,
-  Custom,
+  red,
+  blue,
+  custom,
 }
 
 class ThreeCirclesBackground extends CirclesBackground {
   final List<List<Color>>? customColors;
 
-  ThreeCirclesBackground({
+  ThreeCirclesBackground({Key? key,
     required Size sizeOfScreen,
-    GradientColor gradientColor = GradientColor.Blue,
+    GradientColor gradientColor = GradientColor.blue,
     Widget? child,
     this.customColors,
-  })  : assert(gradientColor == GradientColor.Blue ||
-            gradientColor == GradientColor.Red ||
-            (gradientColor == GradientColor.Custom && customColors != null && customColors.length == 3)),
-        super(
+  })  : assert(gradientColor == GradientColor.blue ||
+            gradientColor == GradientColor.red ||
+            (gradientColor == GradientColor.custom && customColors != null && customColors.length == 3)),
+        super(key: key,
           circles:
               sampleData(sizeOfScreen, getColor(gradientColor, customColors)),
           child: child,
@@ -40,13 +40,13 @@ class ThreeCirclesBackground extends CirclesBackground {
 
   static List<CircleInfo> sampleData(Size sizeOfScreen, List<List<Color>> colors) => [
         CircleInfo(
-          size: Size(175, 175),
+          size: const Size(175, 175),
           turns: 180 / 360,
           alignment: Alignment.topRight,
           gradient: LinearGradient(
             colors: colors[0],
           ),
-          borderRadius: BorderRadius.only(topRight: Radius.circular(100)),
+          borderRadius: const BorderRadius.only(topRight: Radius.circular(100)),
         ),
         CircleInfo(
           size: Size(sizeOfScreen.width, sizeOfScreen.height / 1.25),
@@ -57,28 +57,28 @@ class ThreeCirclesBackground extends CirclesBackground {
           ),
           borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(min(sizeOfScreen.width, sizeOfScreen.height)*1),
-            topRight: Radius.circular(175),
+            topRight: const Radius.circular(175),
           ),
         ),
         CircleInfo(
-          size: Size(250, 250),
+          size: const Size(250, 250),
           turns: 90 / 360,
           alignment: Alignment.topLeft,
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
             colors: colors[2],
           ),
-          borderRadius: BorderRadius.only(topRight: Radius.circular(250)),
+          borderRadius: const BorderRadius.only(topRight: Radius.circular(250)),
         ),
       ];
 
   static List<List<Color>> getColor(GradientColor gradientColor, customGradients) {
     switch(gradientColor) {
-      case GradientColor.Red:
+      case GradientColor.red:
         return sampleRedColors;
-      case GradientColor.Blue:
+      case GradientColor.blue:
         return sampleBlueColors;
-      case GradientColor.Custom:
+      case GradientColor.custom:
         return customGradients!;
     }
   }

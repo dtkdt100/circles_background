@@ -5,8 +5,9 @@ class CircleInfo {
     required this.size,
     this.turns = 0,
     this.alignment = Alignment.topCenter,
-    this.borderRadius,
+    this.borderRadius = const BorderRadius.all(Radius.circular(250)),
     this.gradient,
+    this.color,
   });
 
   final Size size;
@@ -14,10 +15,11 @@ class CircleInfo {
   final Alignment alignment;
   final BorderRadiusGeometry? borderRadius;
   final Gradient? gradient;
+  final Color? color;
 }
 
 class CirclesBackground extends StatelessWidget {
-  CirclesBackground({required this.circles, this.child});
+  const CirclesBackground({Key? key, required this.circles, this.child}) : super(key: key);
 
   final Widget? child;
   final List<CircleInfo> circles;
@@ -34,10 +36,10 @@ class CirclesBackground extends StatelessWidget {
             ),
             Theme.of(context).brightness == Brightness.dark ? Container(
               color: Colors.black.withOpacity(0.6),
-            ) : SizedBox(),
+            ) : const SizedBox(),
           ],
         ),
-        child ?? SizedBox(),
+        child ?? const SizedBox(),
       ],
     );
   }
@@ -50,6 +52,7 @@ class CirclesBackground extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: circle.borderRadius,
               gradient: circle.gradient,
+              color: circle.color,
             ),
             width: circle.size.width,
             height: circle.size.height,
