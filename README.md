@@ -4,12 +4,11 @@ A simple backround design package to make your app look beautiful.
 
 ## Features
 
-Creates nice and simple background desgin, you can use our two classes.
+Creates a nice and simple background design, you can use our two classes.
 
-The first class is `ThreeCirclesBackground` witch lets you use out defult circle background design. You can customize it using the pramater `gradientColor`.
-
-It can be set to `GradientColor.blue`, `GradientColor.red` or `GradientColor.custom`. If you choose to custom you need to also provide the pramater `colors`, 
-it is the colors used for the circles gradient. It should be 3 lists long, and each list should contain at least two colors.
+The first class is `ThreeCirclesBackground` witch lets you use our defult circles background design. You can customize it using the pramater `gradientColor`.
+It can be set to `GradientColor.blue`, `GradientColor.red` or `GradientColor.custom`. If you choose the custom one you need also to provide the pramater `colors`, 
+The colors are used for the circles gradient. It should be 3 lists long, and each list should contain at least two colors.
 
 ##### `GradientColor.blue`
 ![alt text](https://github.com/dtkdt100/circles_background/blob/main/screenshots/1.jpg)
@@ -23,9 +22,8 @@ it is the colors used for the circles gradient. It should be 3 lists long, and e
 ![alt text](https://github.com/dtkdt100/circles_background/blob/main/screenshots/3.jpg)
 
 
-The second class is `CirclesBackground` that takes only one pramater `circles`. You need to provide a list of `CircleInfo` class that takes: size, color, turns, 
+The second class is `CirclesBackground`, This one takes only one pramater `circles`. You need to provide a list of `CircleInfo` - a class that takes: size, color, turns, 
 alignment, borderRadius, gradient.
-
 
 ##### `CirclesBackground example`
 ![alt text](https://github.com/dtkdt100/circles_background/blob/main/screenshots/4.jpg)
@@ -246,8 +244,10 @@ class ThreeCirclesBackgroundPage extends StatelessWidget {
     }
   }
 }
-
-
-
 ```
+
+## Additional information
+
+Privacy guard - protect you privacy is the best design example for this package.
+See at - [Google Play](https://play.google.com/store/apps/details?id=com.privacy.guard), [App Store](https://apps.apple.com/us/app/privacy-guard-be-private/id1576056112)
 
