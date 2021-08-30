@@ -4,4 +4,4 @@
 
 ## 0.0.2
 
-* Increase the score on pub.dev
+* Added explanations
