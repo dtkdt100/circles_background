@@ -1,7 +1,7 @@
 name: circles_background
 description: Beautiful circles background design for flutter.
 version: 0.0.1
-homepage: https://github.com/dtkdt100/Privacy-Guard-App
+homepage: https://github.com/dtkdt100/circles_background
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
