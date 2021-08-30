@@ -41,3 +41,6 @@ from the package authors, and more.
 ## Screen shots
 
 ![alt text](https://github.com/dtkdt100/circles_background/blob/main/screenshots/1.jpg)
+![alt text](https://github.com/dtkdt100/circles_background/blob/main/screenshots/2.jpg)
+![alt text](https://github.com/dtkdt100/circles_background/blob/main/screenshots/3.jpg)
+![alt text](https://github.com/dtkdt100/circles_background/blob/main/screenshots/4.jpg)

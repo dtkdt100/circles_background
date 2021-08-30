@@ -16,15 +16,18 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(),
+      home: CirclesBackgroundPage(),
+      //home: const ThreeCirclesBackgroundPage(GradientColor.blue),
+      //home: const ThreeCirclesBackgroundPage(GradientColor.red),
+      //home: const ThreeCirclesBackgroundPage(GradientColor.custom),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class CirclesBackgroundPage extends StatelessWidget {
+  CirclesBackgroundPage({Key? key}) : super(key: key);
 
-  static List<CircleInfo> circles = [
+  final List<CircleInfo> circles = [
     CircleInfo(
         size: const Size(300, 500),
         color: Colors.green,
@@ -38,7 +41,7 @@ class MyHomePage extends StatelessWidget {
             end: Alignment.bottomCenter,
             colors: [Colors.green[800]!, Colors.green]
         ),
-        borderRadius: const BorderRadius.only(bottomRight: Radius.circular(200)),
+        borderRadius: const BorderRadius.only(),
         alignment: Alignment.topLeft
     ),
     CircleInfo(
@@ -70,4 +73,39 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+
+class ThreeCirclesBackgroundPage extends StatelessWidget {
+  final GradientColor gradientColor;
+  const ThreeCirclesBackgroundPage(this.gradientColor, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ThreeCirclesBackground(
+        gradientColor: gradientColor,
+        customColors: getCustomColors(),
+        sizeOfScreen: MediaQuery.of(context).size,
+        child: const Padding(
+          padding: EdgeInsets.symmetric(vertical: 70, horizontal: 25),
+          child: Text('Hello word!', style: TextStyle(
+              color: Colors.white,
+              fontSize: 40
+          ),),
+        ),
+      ),
+
+    );
+  }
+
+  List<List<Color>>? getCustomColors() {
+    if (gradientColor == GradientColor.custom) {
+      return [
+        [Colors.pink[700]!, Colors.pink[900]!],
+        [Colors.pink[700]!, Colors.pink[900]!],
+        [Colors.pink[700]!, Colors.pink[900]!],
+      ];
+    }
+  }
+}
+
 
