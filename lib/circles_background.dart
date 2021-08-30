@@ -1,6 +1,6 @@
 library circles_background;
 
-///The package was made for Privacy Guard app and we decided to release the package to the world and let others enjoy it
+///The package was made for Privacy Guard app and we decided to release the package to the world and let others enjoy it.
 ///You can find the app in:
 ///Google play - https://play.google.com/store/apps/details?id=com.privacy.guard
 ///App Store - https://apps.apple.com/us/app/privacy-guard-be-private/id1576056112
