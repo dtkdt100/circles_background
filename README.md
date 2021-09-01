@@ -22,7 +22,7 @@ The colors are used for the circles gradient. It should be 3 lists long, and eac
 ![alt text](https://github.com/dtkdt100/circles_background/blob/main/screenshots/3.jpg)
 
 
-The second class is `CirclesBackground`, This one takes only one pramater `circles`. You need to provide a list of `CircleInfo` - a class that takes: size, color, turns, 
+The second class is `CirclesBackground`. This one takes only one pramater `circles`. You need to provide a list of `CircleInfo` - a class that takes: size, color, turns, 
 alignment, borderRadius, gradient.
 
 ##### `CirclesBackground example`
