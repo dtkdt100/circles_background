@@ -11,22 +11,22 @@ It can be set to `GradientColor.blue`, `GradientColor.red` or `GradientColor.cus
 The colors are used for the circles gradient. It should be 3 lists long, and each list should contain at least two colors.
 
 ##### `GradientColor.blue`
-![alt text](https://github.com/dtkdt100/circles_background/blob/main/screenshots/1.jpg)
+![alt text](./screenshots/1.jpg)
 
 
 ##### `GradientColor.red`
-![alt text](https://github.com/dtkdt100/circles_background/blob/main/screenshots/2.jpg)
+![alt text](./screenshots/2.jpg)
 
 
 ##### `GradientColor.custom`
-![alt text](https://github.com/dtkdt100/circles_background/blob/main/screenshots/3.jpg)
+![alt text](./screenshots/3.jpg)
 
 
 The second class is `CirclesBackground`. This one takes only one pramater `circles`. You need to provide a list of `CircleInfo` - a class that takes: size, color, turns, 
 alignment, borderRadius, gradient.
 
 ##### `CirclesBackground example`
-![alt text](https://github.com/dtkdt100/circles_background/blob/main/screenshots/4.jpg)
+![alt text](./screenshots/4.jpg)
 
 
 ## Usage

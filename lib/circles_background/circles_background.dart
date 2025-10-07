@@ -35,7 +35,7 @@ class CirclesBackground extends StatelessWidget {
   final List<CircleInfo> circles;
 
   const CirclesBackground({Key? key, required this.circles, this.child})
-      : super(key: key);
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +45,12 @@ class CirclesBackground extends StatelessWidget {
           children: [
             Stack(
               children: List.generate(
-                  circles.length, (index) => buildCircle(circles[index])),
+                circles.length,
+                (index) => buildCircle(circles[index]),
+              ),
             ),
             Theme.of(context).brightness == Brightness.dark
-                ? Container(
-                    color: Colors.black.withOpacity(0.6),
-                  )
+                ? Container(color: Colors.black.withValues(alpha: 0.6))
                 : const SizedBox(),
           ],
         ),
@@ -61,24 +61,24 @@ class CirclesBackground extends StatelessWidget {
 
   ///Creates each item
   Widget buildCircle(CircleInfo circle) => Align(
-        ///Alignment in the screen
-        alignment: circle.alignment,
-        child: RotationTransition(
-          ///Turns with the class [RotationTransition]
-          turns: AlwaysStoppedAnimation(circle.turns),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: circle.borderRadius,
+    ///Alignment in the screen
+    alignment: circle.alignment,
+    child: RotationTransition(
+      ///Turns with the class [RotationTransition]
+      turns: AlwaysStoppedAnimation(circle.turns),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: circle.borderRadius,
 
-              ///Color or gradient must of them must be null
-              gradient: circle.gradient,
-              color: circle.color,
-            ),
-
-            ///The width and the height of the item can be over the screen size
-            width: circle.size.width,
-            height: circle.size.height,
-          ),
+          ///Color or gradient must of them must be null
+          gradient: circle.gradient,
+          color: circle.color,
         ),
-      );
+
+        ///The width and the height of the item can be over the screen size
+        width: circle.size.width,
+        height: circle.size.height,
+      ),
+    ),
+  );
 }
