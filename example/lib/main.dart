@@ -77,8 +77,7 @@ class CirclesBackgroundPage extends StatelessWidget {
 class ThreeCirclesBackgroundPage extends StatelessWidget {
   final GradientColor gradientColor;
 
-  const ThreeCirclesBackgroundPage(this.gradientColor, {Key? key})
-    : super(key: key);
+  const ThreeCirclesBackgroundPage(this.gradientColor, {super.key});
 
   @override
   Widget build(BuildContext context) {

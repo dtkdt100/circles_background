@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Describes a single decorative shape drawn by [CirclesBackground].
 class CircleInfo {
   ///Sized of the item
   final Size size;
@@ -15,8 +16,11 @@ class CircleInfo {
 
   ///Gradient or color - cannot be both
   final Gradient? gradient;
+
+  ///Solid color of the item - cannot be used together with [gradient]
   final Color? color;
 
+  /// Creates a description of a decorative shape.
   CircleInfo({
     required this.size,
     this.turns = 0,
@@ -27,6 +31,7 @@ class CircleInfo {
   });
 }
 
+/// A widget that paints a list of [CircleInfo] shapes behind [child].
 class CirclesBackground extends StatelessWidget {
   ///Child to be above the items
   final Widget? child;
@@ -34,8 +39,8 @@ class CirclesBackground extends StatelessWidget {
   ///List of [CircleInfo] to be made
   final List<CircleInfo> circles;
 
-  const CirclesBackground({Key? key, required this.circles, this.child})
-    : super(key: key);
+  /// Creates a background made of the given [circles].
+  const CirclesBackground({super.key, required this.circles, this.child});
 
   @override
   Widget build(BuildContext context) {

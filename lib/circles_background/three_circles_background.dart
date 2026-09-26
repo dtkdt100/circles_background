@@ -6,6 +6,7 @@ import 'circles_background.dart';
 ///enum for the gradient color of the items
 enum GradientColor { red, blue, custom }
 
+/// A ready-made [CirclesBackground] with three circles.
 class ThreeCirclesBackground extends CirclesBackground {
   ///Extends from [CirclesBackground]
   ///All the parameters like [sampleRedColors] or [sampleData] are static because the user can use them if he wants.
@@ -14,11 +15,12 @@ class ThreeCirclesBackground extends CirclesBackground {
   ///If you chose [GradientColor.custom] you need to provide [customColors] for the circles
   final List<List<Color>>? customColors;
 
+  /// Creates a three circles background sized for [sizeOfScreen].
   ThreeCirclesBackground({
-    Key? key,
+    super.key,
     required Size sizeOfScreen,
     GradientColor gradientColor = GradientColor.blue,
-    Widget? child,
+    super.child,
     this.customColors,
   }) : assert(
          gradientColor == GradientColor.blue ||
@@ -28,12 +30,10 @@ class ThreeCirclesBackground extends CirclesBackground {
                  customColors.length == 3),
        ),
        super(
-         key: key,
          circles: sampleData(
            sizeOfScreen,
            _getColor(gradientColor, customColors),
          ),
-         child: child,
        );
 
   ///The sample data were created original by the developer of this package
