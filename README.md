@@ -1,253 +1,143 @@
 # Circles Background
 
-A simple backround design package to make your app look beautiful.
+[![pub package](https://img.shields.io/pub/v/circles_background.svg)](https://pub.dev/packages/circles_background)
+[![pub points](https://img.shields.io/pub/points/circles_background)](https://pub.dev/packages/circles_background/score)
+[![likes](https://img.shields.io/pub/likes/circles_background)](https://pub.dev/packages/circles_background/score)
+[![license](https://img.shields.io/badge/license-BSD--3--Clause-blue.svg)](https://github.com/dtkdt100/circles_background/blob/main/LICENSE)
+
+Beautiful circle and shape backgrounds for your Flutter screens. Use the
+ready-made design in one line, or build your own from any mix of shapes,
+colors and gradients.
+
+| `GradientColor.blue` | `GradientColor.red` | `GradientColor.custom` | `CirclesBackground` |
+| :---: | :---: | :---: | :---: |
+| ![Blue preset](https://raw.githubusercontent.com/dtkdt100/circles_background/main/screenshots/1.jpg) | ![Red preset](https://raw.githubusercontent.com/dtkdt100/circles_background/main/screenshots/2.jpg) | ![Custom colors preset](https://raw.githubusercontent.com/dtkdt100/circles_background/main/screenshots/3.jpg) | ![Custom shapes](https://raw.githubusercontent.com/dtkdt100/circles_background/main/screenshots/4.jpg) |
 
 ## Features
 
-Creates a nice and simple background design, you can use our two classes.
+- **Ready-made design:** `ThreeCirclesBackground` gives you a polished background in one line.
+- **Fully customizable:** `CirclesBackground` draws any list of shapes you describe with `CircleInfo`.
+- **Gradients or solid colors,** with any size, rotation, alignment and corner radius.
+- **Dark mode aware:** the background dims automatically when the app uses a dark theme.
+- **Works everywhere:** Android, iOS, web, Windows, macOS and Linux, with no dependencies besides Flutter.
 
-The first class is `ThreeCirclesBackground` witch lets you use our defult circles background design. You can customize it using the pramater `gradientColor`.
-It can be set to `GradientColor.blue`, `GradientColor.red` or `GradientColor.custom`. If you choose the custom one you need also to provide the pramater `colors`, 
-The colors are used for the circles gradient. It should be 3 lists long, and each list should contain at least two colors.
+## Getting started
 
-##### `GradientColor.blue`
-![alt text](./screenshots/1.jpg)
+Add the package to your `pubspec.yaml`:
 
+```yaml
+dependencies:
+  circles_background: ^0.0.4
+```
 
-##### `GradientColor.red`
-![alt text](./screenshots/2.jpg)
+Then import it:
 
-
-##### `GradientColor.custom`
-![alt text](./screenshots/3.jpg)
-
-
-The second class is `CirclesBackground`. This one takes only one pramater `circles`. You need to provide a list of `CircleInfo` - a class that takes: size, color, turns, 
-alignment, borderRadius, gradient.
-
-##### `CirclesBackground example`
-![alt text](./screenshots/4.jpg)
-
+```dart
+import 'package:circles_background/circles_background.dart';
+```
 
 ## Usage
 
-You can import the package with:
+### Ready-made design
+
+Wrap your screen content with `ThreeCirclesBackground`:
 
 ```dart
-import 'package:circles_background/circles_background.dart';
+Scaffold(
+  body: ThreeCirclesBackground(
+    sizeOfScreen: MediaQuery.sizeOf(context),
+    gradientColor: GradientColor.blue, // or GradientColor.red
+    child: const Text('Hello world!'),
+  ),
+)
 ```
 
-Use it as follows:
-
-##### `CirclesBackgroundPage`
+To use your own colors, set `gradientColor` to `GradientColor.custom` and pass
+`customColors`: exactly 3 lists (one per circle), each with at least two colors
+for the gradient.
 
 ```dart
-class CirclesBackgroundPage extends StatelessWidget {
-  CirclesBackgroundPage({Key? key}) : super(key: key);
-
-  final List<CircleInfo> circles = [
-    CircleInfo(
-        size: const Size(300, 500),
-        color: Colors.green,
-        borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(200)),
-        alignment: Alignment.topRight
-    ),
-    CircleInfo(
-        size: const Size(300, 900),
-        gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.green[800]!, Colors.green]
-        ),
-        borderRadius: const BorderRadius.only(),
-        alignment: Alignment.topLeft
-    ),
-    CircleInfo(
-        size: const Size(200, 500),
-        gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.green[800]!, Colors.green]
-        ),
-        borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(50), topLeft: Radius.circular(150)),
-        alignment: Alignment.bottomRight
-    ),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: CirclesBackground(
-        circles: circles,
-        child: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 70, horizontal: 25),
-          child: Text('Hello word!', style: TextStyle(
-            color: Colors.white,
-            fontSize: 40
-          ),),
-        ),
-      ),
-
-    );
-  }
-}
+ThreeCirclesBackground(
+  sizeOfScreen: MediaQuery.sizeOf(context),
+  gradientColor: GradientColor.custom,
+  customColors: [
+    [Colors.pink[700]!, Colors.pink[400]!],
+    [Colors.pink[700]!, Colors.pink[400]!],
+    [Colors.pink[700]!, Colors.pink[400]!],
+  ],
+  child: const Text('Hello world!'),
+)
 ```
 
-##### `ThreeCirclesBackgroundPage`
+### Your own shapes
+
+Use `CirclesBackground` and describe each shape with a `CircleInfo`:
 
 ```dart
-class ThreeCirclesBackgroundPage extends StatelessWidget {
-  final GradientColor gradientColor;
-  const ThreeCirclesBackgroundPage(this.gradientColor, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: ThreeCirclesBackground(
-        gradientColor: gradientColor,
-        customColors: getCustomColors(),
-        sizeOfScreen: MediaQuery.of(context).size,
-        child: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 70, horizontal: 25),
-          child: Text('Hello word!', style: TextStyle(
-              color: Colors.white,
-              fontSize: 40
-          ),),
-        ),
+CirclesBackground(
+  circles: [
+    CircleInfo(
+      size: const Size(300, 500),
+      color: Colors.green,
+      alignment: Alignment.topRight,
+      borderRadius: const BorderRadius.only(
+        bottomLeft: Radius.circular(200),
       ),
-
-    );
-  }
-
-  List<List<Color>>? getCustomColors() {
-    if (gradientColor == GradientColor.custom) {
-      return [
-        [Colors.pink[700]!, Colors.pink[900]!],
-        [Colors.pink[700]!, Colors.pink[900]!],
-        [Colors.pink[700]!, Colors.pink[900]!],
-      ];
-    }
-  }
-}
+    ),
+    CircleInfo(
+      size: const Size(200, 500),
+      alignment: Alignment.bottomRight,
+      borderRadius: const BorderRadius.only(
+        bottomLeft: Radius.circular(50),
+        topLeft: Radius.circular(150),
+      ),
+      gradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [Colors.green[800]!, Colors.green],
+      ),
+    ),
+  ],
+  child: const Text('Hello world!'),
+)
 ```
 
+Shapes are painted in list order, so later shapes are drawn on top of earlier ones.
 
-##### Full code `main.dart`
+## API
 
-```dart
-import 'package:flutter/material.dart';
-import 'package:circles_background/circles_background.dart';
+### `CircleInfo`
 
-void main() {
-  runApp(const MyApp());
-}
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `Size` | required | Width and height of the shape. It may be larger than the screen. |
+| `alignment` | `Alignment` | `Alignment.topCenter` | Where the shape is placed on the screen. |
+| `borderRadius` | `BorderRadiusGeometry?` | `BorderRadius.all(Radius.circular(250))` | Corner radius that gives the shape its form. |
+| `color` | `Color?` | `null` | Solid fill color. Don't combine with `gradient`. |
+| `gradient` | `Gradient?` | `null` | Gradient fill. Don't combine with `color`. |
+| `turns` | `double` | `0` | Rotation, from `0.0` to `1.0` (a full turn). |
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+### `ThreeCirclesBackground`
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Circles Background',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: CirclesBackgroundPage(),
-      //home: const ThreeCirclesBackgroundPage(GradientColor.blue),
-      //home: const ThreeCirclesBackgroundPage(GradientColor.red),
-      //home: const ThreeCirclesBackgroundPage(GradientColor.custom),
-    );
-  }
-}
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `sizeOfScreen` | `Size` | required | Screen size, usually `MediaQuery.sizeOf(context)`. |
+| `gradientColor` | `GradientColor` | `GradientColor.blue` | `blue`, `red` or `custom`. |
+| `customColors` | `List<List<Color>>?` | `null` | Required when `gradientColor` is `custom`: 3 lists of colors. |
+| `child` | `Widget?` | `null` | Content drawn on top of the background. |
 
-class CirclesBackgroundPage extends StatelessWidget {
-  CirclesBackgroundPage({Key? key}) : super(key: key);
+## Example app
 
-  final List<CircleInfo> circles = [
-    CircleInfo(
-        size: const Size(300, 500),
-        color: Colors.green,
-        borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(200)),
-        alignment: Alignment.topRight
-    ),
-    CircleInfo(
-        size: const Size(300, 900),
-        gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.green[800]!, Colors.green]
-        ),
-        borderRadius: const BorderRadius.only(),
-        alignment: Alignment.topLeft
-    ),
-    CircleInfo(
-        size: const Size(200, 500),
-        gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.green[800]!, Colors.green]
-        ),
-        borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(50), topLeft: Radius.circular(150)),
-        alignment: Alignment.bottomRight
-    ),
-  ];
+The [example](https://github.com/dtkdt100/circles_background/tree/main/example)
+app is a gallery of background styles. Tap one to see it full screen, swipe
+between styles, switch to dark mode, and copy the code for any style.
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: CirclesBackground(
-        circles: circles,
-        child: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 70, horizontal: 25),
-          child: Text('Hello word!', style: TextStyle(
-            color: Colors.white,
-            fontSize: 40
-          ),),
-        ),
-      ),
-
-    );
-  }
-}
-
-class ThreeCirclesBackgroundPage extends StatelessWidget {
-  final GradientColor gradientColor;
-  const ThreeCirclesBackgroundPage(this.gradientColor, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: ThreeCirclesBackground(
-        gradientColor: gradientColor,
-        customColors: getCustomColors(),
-        sizeOfScreen: MediaQuery.of(context).size,
-        child: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 70, horizontal: 25),
-          child: Text('Hello word!', style: TextStyle(
-              color: Colors.white,
-              fontSize: 40
-          ),),
-        ),
-      ),
-
-    );
-  }
-
-  List<List<Color>>? getCustomColors() {
-    if (gradientColor == GradientColor.custom) {
-      return [
-        [Colors.pink[700]!, Colors.pink[900]!],
-        [Colors.pink[700]!, Colors.pink[900]!],
-        [Colors.pink[700]!, Colors.pink[900]!],
-      ];
-    }
-  }
-}
+```sh
+cd example
+flutter run
 ```
 
-## Additional information
+## Contributing
 
-Privacy guard - protect you privacy is the best design example for this package.
-See at - [Google Play](https://play.google.com/store/apps/details?id=com.privacy.guard), [App Store](https://apps.apple.com/us/app/privacy-guard-be-private/id1576056112)
-
+Issues and pull requests are welcome on
+[GitHub](https://github.com/dtkdt100/circles_background).

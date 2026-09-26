@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:circles_background/circles_background.dart';
+
+import 'home_page.dart';
+
+/// App-wide theme mode, toggled from the app bars.
+final themeMode = ValueNotifier(ThemeMode.light);
 
 void main() {
   runApp(const MyApp());
@@ -10,101 +14,35 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Circles Background',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      debugShowCheckedModeBanner: false,
-      home: CirclesBackgroundPage(),
-      //home: const ThreeCirclesBackgroundPage(GradientColor.blue),
-      //home: const ThreeCirclesBackgroundPage(GradientColor.red),
-      //home: const ThreeCirclesBackgroundPage(GradientColor.custom),
-    );
-  }
-}
-
-class CirclesBackgroundPage extends StatelessWidget {
-  CirclesBackgroundPage({super.key});
-
-  final List<CircleInfo> circles = [
-    CircleInfo(
-      size: const Size(300, 500),
-      color: Colors.green,
-      borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(200)),
-      alignment: Alignment.topRight,
-    ),
-    CircleInfo(
-      size: const Size(300, 1000),
-      gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [Colors.green[800]!, Colors.green],
-      ),
-      borderRadius: const BorderRadius.only(),
-      alignment: Alignment.topLeft,
-    ),
-    CircleInfo(
-      size: const Size(200, 500),
-      gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [Colors.green[800]!, Colors.green],
-      ),
-      borderRadius: const BorderRadius.only(
-        bottomLeft: Radius.circular(50),
-        topLeft: Radius.circular(150),
-      ),
-      alignment: Alignment.bottomRight,
-    ),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: CirclesBackground(
-        circles: circles,
-        child: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 70, horizontal: 25),
-          child: Text(
-            'Hello word!',
-            style: TextStyle(color: Colors.white, fontSize: 40),
-          ),
+    return ValueListenableBuilder(
+      valueListenable: themeMode,
+      builder: (context, mode, _) => MaterialApp(
+        title: 'Circles Background',
+        debugShowCheckedModeBanner: false,
+        themeMode: mode,
+        theme: ThemeData(colorSchemeSeed: Colors.blue),
+        darkTheme: ThemeData(
+          colorSchemeSeed: Colors.blue,
+          brightness: Brightness.dark,
         ),
+        home: const HomePage(),
       ),
     );
   }
 }
 
-class ThreeCirclesBackgroundPage extends StatelessWidget {
-  final GradientColor gradientColor;
-
-  const ThreeCirclesBackgroundPage(this.gradientColor, {super.key});
+/// Switches between light and dark mode.
+class ThemeToggleButton extends StatelessWidget {
+  const ThemeToggleButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ThreeCirclesBackground(
-        gradientColor: gradientColor,
-        customColors: getCustomColors(),
-        sizeOfScreen: MediaQuery.of(context).size,
-        child: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 70, horizontal: 25),
-          child: Text(
-            'Hello word!',
-            style: TextStyle(color: Colors.white, fontSize: 40),
-          ),
-        ),
-      ),
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return IconButton(
+      tooltip: isDark ? 'Light mode' : 'Dark mode',
+      icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+      onPressed: () =>
+          themeMode.value = isDark ? ThemeMode.light : ThemeMode.dark,
     );
-  }
-
-  List<List<Color>>? getCustomColors() {
-    if (gradientColor == GradientColor.custom) {
-      return [
-        [Colors.pink[700]!, Colors.pink[900]!],
-        [Colors.pink[700]!, Colors.pink[900]!],
-        [Colors.pink[700]!, Colors.pink[900]!],
-      ];
-    }
-    return null;
   }
 }

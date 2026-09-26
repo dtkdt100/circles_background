@@ -2,6 +2,8 @@
 
 * Fix static analysis issues (remove library name, use super parameters)
 * Add missing API documentation
+* Rewrite README with usage guide and API reference
+* Redesign example app: style gallery, full-screen swipe viewer, dark mode and copyable code
 
 ## 0.0.3
 
